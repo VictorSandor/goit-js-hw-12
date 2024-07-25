@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const searchParams = {
-  key: '44856492-1c75259359e870db5bcbdf4ec',
+  key: '45016563-185536351b7165172c03d7cff',
   q: '',
   imageType: 'photo',
   orientation: 'horizontal',
