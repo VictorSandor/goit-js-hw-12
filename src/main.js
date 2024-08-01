@@ -32,6 +32,7 @@ async function handlerSearch(event) {
     return;
   }
 
+  searchParams.page = 1;
   showLoader();
 
   try {
@@ -49,7 +50,7 @@ async function handlerSearch(event) {
       noImagesError();
     }
   } catch (error) {
-    noImagesError;
+    noImagesError();
   } finally {
     refs.searchForm.reset();
   }
@@ -70,7 +71,7 @@ async function handlerLoadMore() {
     lightbox.refresh();
     scrollGalerryCard();
   } catch (error) {
-    noImagesError;
+    noImagesError();
   } finally {
     if (searchParams.page === searchParams.maxPage) {
       hideButton();
