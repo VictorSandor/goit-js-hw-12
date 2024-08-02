@@ -17,6 +17,7 @@ hideLoader();
 hideButton();
 
 refs.searchForm.addEventListener('submit', handlerSearch);
+refs.loadMoreBtn.addEventListener('click', handlerLoadMore);
 
 async function handlerSearch(event) {
   event.preventDefault();
@@ -45,7 +46,6 @@ async function handlerSearch(event) {
 
     if (hits.length > 0 && hits.length !== totalHits) {
       showButton();
-      refs.loadMoreBtn.addEventListener('click', handlerLoadMore);
     } else if (hits.length === 0) {
       noImagesError();
     }
