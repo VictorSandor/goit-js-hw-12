@@ -40,16 +40,20 @@ async function handlerSearch(event) {
     const { totalHits, hits } = await getPictures();
 
     hideLoader();
-    searchParams.maxPage = Math.ceil(totalHits / searchParams.per_page);
+    // searchParams.maxPage = Math.ceil(totalHits / searchParams.per_page);
     refs.gallery.insertAdjacentHTML('beforeend', renderPictures(hits));
     lightbox.refresh();
 
-    if (hits.length > 0 && hits.length !== totalHits) {
+    if (hits.length > 0 && searchParams.page < searchParams.maxPage) {
       showButton();
-    } else if (hits.length === 0) {
-      noImagesError();
+    } else {
+      hideButton();
+      if (hits.length === 0) {
+        noImagesError();
+      }
     }
   } catch (error) {
+    hideLoader();
     noImagesError();
   } finally {
     refs.searchForm.reset();
@@ -59,7 +63,7 @@ async function handlerSearch(event) {
 async function handlerLoadMore() {
   searchParams.page += 1;
   hideButton();
-  showLoader();
+  show;
 
   try {
     const { hits } = await getPictures();
