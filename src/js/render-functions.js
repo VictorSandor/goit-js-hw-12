@@ -1,41 +1,35 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-const gallery = document.querySelector('ul.gallery');
-const galleryModal = new SimpleLightbox('.gallery-item a', {
-  className: 'js-lightbox',
-  overlayOpacity: 0.8,
-  captionsData: 'alt',
-  captionDelay: 250,
-});
 
-export function createGalleryMarkup(dataObj) {
-  const markup = dataObj
-    .map(
-      ({
-        webformatURL,
-        largeImageURL,
-        tags,
-        likes,
-        views,
-        comments,
-        downloads,
-      }) => `<li class="gallery-item">
-	<a class="gallery-link" href="${largeImageURL}">
-		<img
-			class="gallery-image"
-			src="${webformatURL}"
-			alt="${tags}"
-			/>
-    <div class="image-stats">
-  <p>Likes </br> ${likes}</p>
-  <p> Views </br> ${views}</p>
-  <p>Comments </br> ${comments}</p>
-  <p>Dowloads </br> ${downloads}</p>
-</div>
-	</a>
-</li>`
-    )
+export default function addImagesToHtml(images) {
+  const gallery = document.querySelector('.gallery');
+
+  const imagesHtml = images
+    .map(image => {
+      return `<li class="item-ul">
+  <a href="${image.largeImageURL}"><img src="${image.webformatURL}" alt="${image.tags}" /></a>
+  <div class="about-img-div">
+    <p class="description-img">Likes</p>
+    <p class="description-img">Views</p>
+    <p class="description-img">Comments</p>
+    <p class="description-img">Downloads</p>
+    <span class="description-value">${image.likes}</span>
+    <span class="description-value">${image.views}</span>
+    <span class="description-value">${image.comments}</span>
+    <span class="description-value">${image.downloads}</span>
+  </div>
+</li>`;
+    })
     .join('');
-  gallery.insertAdjacentHTML('beforeend', markup);
-  galleryModal.refresh();
+
+  gallery.insertAdjacentHTML('beforeend', imagesHtml);
+
+  const lightBox = new SimpleLightbox('.gallery li a', {
+    captions: true,
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    captionDelay: 250,
+  });
+
+  lightBox.refresh();
 }

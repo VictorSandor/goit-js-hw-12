@@ -2,37 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="upgrade-insecure-requests"
-    />
-    <title>JS 12</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/styles.css" />
+    <title>js 12</title>
+    <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
-    <form class="search-form" autocomplete="off">
-      <label>
-        <input
-          type="search"
-          name="search"
-          placeholder="Search images..."
-          autofocus
-        />
-      </label>
-      <button type="submit">Search</button>
-    </form>
-    <ul class="gallery"></ul>
-    <button class="load-button hidden" type="button">Load more</button>
-    <span class="loader hidden"></span>
-
-    <script type="module" src="./main.js"></script>
+    <div class="container">
+      <div class="form-container">
+        <form action="form" class="form">
+          <input type="text" name="input" placeholder="Search images..." />
+          <button type="submit" class="search-button">Search</button>
+        </form>
+      </div>
+      <span class="loader"></span>
+      <div class="gallery-container">
+        <ul class="gallery"></ul>
+        <button type="button" class="load-more-button">Load more...</button>
+      </div>
+    </div>
+    <script src="./main.js" type="module"></script>
   </body>
 </html>
